@@ -118,7 +118,7 @@ cert.key
 .ropeproject
 
 # specific files
-school/settings.py
+#school/settings.py
 
 # mkdocs documentation
 /site
