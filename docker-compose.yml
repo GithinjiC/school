@@ -1,0 +1,14 @@
+version: "3.9"
+
+networks:
+   myshop_default:
+
+services:
+  web:
+    build:
+      context: .
+    volumes:
+      - .:/school
+    ports:
+      - "8000:8000"
+    restart: always
