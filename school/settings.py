@@ -108,8 +108,7 @@ DATABASES = {
         'NAME': 'school',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        # 'HOST': 'db',
-        'HOST': '172.20.0.6',
+        'HOST': '',
         'PORT': 5432,
     }
 }
@@ -181,7 +180,6 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [('127.0.0.1', 6379)],
-            # 'hosts': [('172.20.0.2', 6379)],
         },
     },
 }
