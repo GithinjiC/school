@@ -1,14 +1,26 @@
 version: "3.9"
 
-networks:
-   myshop_default:
-
 services:
   web:
+    container_name: school_web
     build:
       context: .
+    command: python manage.py runserver 0.0.0.0:8300
     volumes:
-      - .:/school
+      - .:/bookmarks
     ports:
-      - "8000:8000"
+      - "8300:8300"
     restart: always
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=school
+  memcached:
+    container_name: memcached
+    image: 'bitnami/memcached:latest'
+    ports:
+      - '11211:11211'
+networks:
+  default:
+    external:
+      name: myshop_default

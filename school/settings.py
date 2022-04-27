@@ -11,8 +11,17 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-from django.urls import reverse_lazy
+# import sentry_sdk
 
+from django.urls import reverse_lazy
+# from sentry_sdk.integrations.django import DjangoIntegration
+
+# sentry_sdk.init(
+#     dsn="https://f5ae3fe3a8324fd893a74645f3ca71f4@o1182901.ingest.sentry.io/6299889",
+#     integrations=[DjangoIntegration()],
+#     traces_sample_rate=1.0,
+#     send_default_pii=True
+# )
 
 LOGIN_REDIRECT_URl = reverse_lazy('student_course_list')
 
@@ -29,7 +38,7 @@ SECRET_KEY = 'r#&roz6$8a^+9vy08m_dsxs#6zk!y$)vle@e)i1-qeuq^b_8wp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['0.0.0.0']
 
 
 # Application definition
@@ -66,6 +75,7 @@ ROOT_URLCONF = 'school.urls'
 
 ASGI_APPLICATION = 'school.routing.application'
 
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -98,7 +108,8 @@ DATABASES = {
         'NAME': 'school',
         'USER': 'postgres',
         'PASSWORD': 'postgres',
-        'HOST': 'db',
+        # 'HOST': 'db',
+        'HOST': '172.20.0.6',
         'PORT': 5432,
     }
 }
@@ -155,7 +166,7 @@ CACHES = {
 # full site cache---unsuitable due to need to instantly reflect updated data
 # set to 60 sec
 CACHE_MIDDLEWARE_ALIAS = 'default'
-CACHE_MIDDLEWARE_SECONDS = 60
+CACHE_MIDDLEWARE_SECONDS = 60*15
 CACHE_MIDDLEWARE_KEY_PREFIX = 'school'
 
 REST_FRAMEWORK = {
@@ -170,6 +181,7 @@ CHANNEL_LAYERS = {
         'BACKEND': 'channels_redis.core.RedisChannelLayer',
         'CONFIG': {
             'hosts': [('127.0.0.1', 6379)],
+            # 'hosts': [('172.20.0.2', 6379)],
         },
     },
 }
